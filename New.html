@@ -29,10 +29,11 @@
   </video>
 
   <script>
-    document.onload = function () {
+    window.onload = function () {
       console.log("foo");
       var video = document.getElementById("myVideo");
-      video.muted = false, 1000;
+      video.volume = 0.5;
+      video.muted = false;
       video.play();
     };
   </script>
