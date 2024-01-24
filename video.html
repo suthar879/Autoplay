@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Video Example</title>
+    <style>
+        /* Style for the overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Style for the popup container */
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Video Popup Trigger -->
+    <script>
+        // Function to show the popup
+        function showPopup() {
+            var overlay = document.getElementById('overlay');
+            overlay.style.display = 'block';
+        }
+
+        // Function to hide the popup
+        function hidePopup() {
+            var overlay = document.getElementById('overlay');
+            overlay.style.display = 'none';
+        }
+
+        // Function to play the video
+        function playVideo() {
+            var video = document.getElementById('popupVideo');
+            video.play();
+        }
+
+        // Function to handle video end and play again
+        function handleVideoEnd() {
+            // Hide the popup
+            hidePopup();
+
+            // Pause the video and rewind to the beginning
+            var video = document.getElementById('popupVideo');
+            video.pause();
+            video.currentTime = 0;
+
+            // Show the popup and play the video again
+            showPopup();
+            playVideo();
+        }
+    </script>
+
+    <!-- Video Popup -->
+    <div id="overlay" class="overlay">
+        <div class="popup-container">
+            <!-- Close Button -->
+            <button onclick="handleVideoEnd()">Close</button>
+
+            <!-- Video Element -->
+            <video id="popupVideo" controls width="400" onended="handleVideoEnd()">
+                <source src="sample-10s.mp4" type="video/mp4">
+            </video>
+
+            <!-- Automatically show and play the video when the page loads -->
+            <script>
+                window.onload = function () {
+                    showPopup();
+                    playVideo();
+                };
+            </script>
+        </div>
+    </div>
+
+</body>
+
+</html>
