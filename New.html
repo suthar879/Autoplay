@@ -29,10 +29,10 @@
   </video>
 
   <script>
-    window.onload = function () {
+    document.onload = function () {
       console.log("foo");
       var video = document.getElementById("myVideo");
-      setInterval(video.muted = false, 1000);
+      video.muted = false, 1000;
       video.play();
     };
   </script>
